@@ -1,0 +1,64 @@
+<div *ngIf="{user: user$ | async, userActivity: userActivity$ | async, userData: userData$ | async} as data">
+  <div class="surface-section px-6 pt-5">
+    <p-tabMenu styleClass="p-1" [model]="items" [activeItem]="items[0]"></p-tabMenu>
+  </div>
+  <div class="surface-section px-6 py-5">
+    <div class="flex flex-row justify-content-between">
+      <div class="flex align-items-start flex-row">
+        <img class="mr-5 select-none pointer-events-none"
+          [src]="(isProfileOwner ? data.userData?.userData?.picture : data.user?.picture)" height="110" width="110" />
+        <div>
+          <div>
+            <span class="text-900 font-medium text-3xl">
+              {{ isProfileOwner ? data.userData?.userData?.name:data.user?.userName }}
+            </span>
+            <i class="pi pi-star-o text-2xl ml-2 text-yellow-500"></i>
+          </div>
+
+          <div class="mt-2" *ngIf="data.user?.status">
+            <span class="text-900 font-medium text-large">
+              {{ data.user?.status }}
+            </span>
+          </div>
+
+          <div class="mt-3 flex align-items-center flex-wrap text-sm">
+            <div class="mr-5">
+              <span class="font-medium text-500">КАРМА</span>
+              <div class="text-700">{{ data.userActivity?.rating }}</div>
+            </div>
+            <div class="mr-5">
+              <span class="font-medium text-500">ПОДПИСЧИКИ</span>
+              <div class="text-700">{{ data.userActivity?.followersNum }}</div>
+            </div>
+            <div class="mr-5">
+              <span class="font-medium text-500">КОНСПЕКТЫ</span>
+              <div class="text-700">{{ data.userActivity?.summariesNum }}</div>
+            </div>
+            <div class="mr-5">
+              <span class="font-medium text-500">КОММЕНТАРИИ</span>
+              <div class="text-700">{{ data.userActivity?.commentsNum }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3 lg:mt-0">
+        <button class="p-button-rounded mr-2 p-ripple p-button p-component p-button-icon-only" pButton
+          icon="pi pi-bookmark">
+          <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+          <span class="p-ink"></span>
+        </button>
+
+        <button class="p-button-rounded p-button-success mr-2 p-ripple p-button p-component p-button-icon-only"
+          icon="pi pi-heart" pButton>
+          <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+          <span class="p-ink"></span>
+        </button>
+
+        <button class="p-button-rounded p-button-help p-ripple p-button p-component p-button-icon-only"
+          icon="pi pi-list" pButton><span aria-hidden="true" class="p-button-label">&nbsp;</span><span
+            class="p-ink"></span></button>
+      </div>
+    </div>
+  </div>
+  <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>
+</div>

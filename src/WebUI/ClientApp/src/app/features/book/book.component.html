@@ -1,0 +1,158 @@
+<div class="py-4 px-8 mx-8" *ngIf="{book: book$ | async} as data">
+
+  <div *ngIf="data.book; else book_skeleton" class="surface-card mx-8 p-6 shadow-2 border-round">
+    <div class="flex">
+      <img class="mb-3 book-cover ml-2 mr-4" src="{{data.book?.image}}" alt="book cover" height="220">
+      <div class="ml-3 flex w-7 flex-column justify-content-end">
+        <p-chip styleClass="mb-2 font-medium summary-count-chip text-0">
+          <span class="summary-count-text">{{data.book?.summaries?.length + ' ' +
+            getPluralForm(data.book?.summaries?.length
+            ?? 0,
+            ['конспект', 'конспекта', 'конспектов'])}}</span>
+        </p-chip>
+        <div class="font-medium text-3xl text-900 mb-2">{{data.book?.name}}</div>
+        <div class="text-500 mb-5">
+          <a [routerLink]="['/author', author.id]" *ngFor="let author of data.book?.authors; last as isLastAuthor">
+            {{author.name + (!isLastAuthor ? ', ': '')}}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <ul class="list-none p-0 m-0">
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Категории</div>
+        <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+          <p-chip styleClass="mr-1 mt-1" *ngFor="let category of data.book?.categories">
+            <span class="tag-text p-1">{{category}}</span>
+          </p-chip>
+        </div>
+      </li>
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Теги</div>
+        <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+          <p-chip styleClass="mr-1 mt-1" *ngFor="let tag of data.book?.tags">
+            <span class="tag-text p-1">{{tag}}</span>
+          </p-chip>
+        </div>
+      </li>
+
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">ISBN</div>
+        <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+          <span *ngFor="let isbn of data.book?.isbns; last as isLastIsbn">
+            {{isbn + (!isLastIsbn ? ', ': '')}}
+          </span>
+        </div>
+      </li>
+
+      <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">О книге</div>
+        <div class="text-900 w-full md:w-10" style="white-space: pre-line">
+          {{data.book?.about}}</div>
+      </li>
+    </ul>
+
+    <div class="font-medium text-2xl text-900 mt-4 ml-2 pl-4">Конспекты этой книги</div>
+
+    <div class="summaries-columns mx-8 py-4">
+      <div class="summary-card" *ngFor="let summary of data.book?.summaries">
+        <div class="surface-card shadow-3 border-round p-3">
+
+          <div class="flex justify-content-between mb-3">
+
+            <div>
+              <span class="block text-500 font-medium mb-3">by
+                <a class="text-primary" [routerLink]="['/user/', summary.creator]">{{summary.creator}}</a>
+                • {{summary?.chaptersNumber + ' ' +
+                getPluralForm(summary?.chaptersNumber
+                ?? 0,
+                ['часть', 'части', 'частей'])}}
+                • {{summary?.createdAt | date:'shortDate'}}
+              </span>
+
+              <div class="text-900 font-medium text-xl mb-3">
+                <p-chip styleClass="mr-1 mt-1" *ngFor="let label of summary?.labels">
+                  <span class="p-1">{{label}}</span>
+                </p-chip>
+
+              </div>
+
+              <div style="white-space: pre-line">
+                {{summary?.about}}
+              </div>
+            </div>
+
+            <div>
+              <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
+                class="p-button-rounded p-button-secondary p-button-text"></button>
+            </div>
+
+          </div>
+
+          <div class="flex justify-content-between">
+            <button pButton pRipple type="button" icon="pi pi-heart" label="{{summary.rating}}"
+              class="p-button-outlined align-self-end"></button>
+            <a pButton pRipple type="button" label="Подробнее" class="p-button-outlined"
+              [routerLink]="['/summary', summary.id]"></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #book_skeleton>
+    <div class="surface-card mx-8 p-4 shadow-2 border-round book-info-skeleton">
+      <div class="flex">
+        <p-skeleton styleClass="mb-3 ml-2 mr-4" width="160px" height="220px"></p-skeleton>
+        <div class="ml-3 flex w-7 flex-column justify-content-end">
+          <p-skeleton styleClass="mb-2" height="34px" borderRadius="17px" width="140px"></p-skeleton>
+          <p-skeleton styleClass="mb-2" width="700px" height="34px"></p-skeleton>
+          <p-skeleton styleClass="mb-5" width="150px" height="20px"></p-skeleton>
+        </div>
+      </div>
+
+      <ul class="list-none p-0 m-0">
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Категории</div>
+          <div class="w-full md:w-8 md:flex-order-0 flex-order-1">
+            <p-skeleton styleClass="mr-1 mt-1" height="26px" borderRadius="13px" width="120px"></p-skeleton>
+          </div>
+        </li>
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">Теги</div>
+          <div class="flex w-full md:w-8 md:flex-order-0 flex-order-1">
+            <p-skeleton styleClass="mr-1 mt-1" height="26px" borderRadius="13px" width="120px"></p-skeleton>
+            <p-skeleton styleClass="mr-1 mt-1" height="26px" borderRadius="13px" width="120px"></p-skeleton>
+            <p-skeleton styleClass="mr-1 mt-1" height="26px" borderRadius="13px" width="120px"></p-skeleton>
+          </div>
+        </li>
+
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">ISBN</div>
+          <div class="w-full md:w-8 md:flex-order-0 flex-order-1">
+            <p-skeleton width="240px"></p-skeleton>
+          </div>
+        </li>
+
+        <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-2 font-medium">О книге</div>
+          <div class="text-900 w-full md:w-10">
+            <p-skeleton styleClass="mb-2" width="80%"></p-skeleton>
+            <p-skeleton styleClass="mb-2" width="60%"></p-skeleton>
+            <p-skeleton styleClass="mb-2" width="70%"></p-skeleton>
+            <p-skeleton width="40%"></p-skeleton>
+          </div>
+        </li>
+      </ul>
+
+      <div class="font-medium text-2xl text-900 mt-4 ml-2 pl-4">Конспекты этой книги</div>
+
+      <div class="flex justify-content-between mx-8 py-4">
+        <p-skeleton width="550px" height="200px"></p-skeleton>
+        <p-skeleton width="550px" height="200px"></p-skeleton>
+      </div>
+    </div>
+  </ng-template>
+</div>

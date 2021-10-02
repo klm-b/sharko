@@ -1,0 +1,115 @@
+<p-sidebar [(visible)]="display" [baseZIndex]="10000">
+  <div class="overflow-y-auto з-3">
+    <div class="p-3 text-600 font-medium">МЕНЮ</div>
+    <p-tabMenu (click)="display = false" class="vertical-menu" [model]="menu_items"></p-tabMenu>
+  </div>
+</p-sidebar>
+
+<header class="flex align-items-center justify-content-between p-3 mx-5" *ngIf="{
+    isAuthenticated: isAuthenticated$ | async,
+    user: userData$ | async
+  } as data">
+  <div class="flex">
+    <button pButton pRipple label="" class="mr-5 p-2 p-button-icon-only p-button-rounded p-button-text p-button-plain"
+      (click)="display = true">
+      <i class="pi pi-align-justify" style="font-size: 1.5rem;"></i>
+    </button>
+
+    <a [routerLink]="'/'" class="logo flex align-items-center">
+      <div class="logo__img">
+        <img src="assets/new_logo.svg" height="35" width="35" alt="Logo" />
+      </div>
+      <span class="logo__title pl-2 text-3xl font-bold">Sharko</span>
+    </a>
+
+    <a class="search-field flex px-7">
+      <span class="p-input-icon-left w-full">
+        <i class="pi pi-search text-gray-400 pl-2"></i>
+        <input (keydown.enter)="search($any($event.target)?.value)"
+          class="surface-100 border-0 text-gray-600 w-full pl-6 p-inputtext p-component"
+          placeholder="Поиск по названию, автору, тегам..." type="text" />
+      </span>
+    </a>
+  </div>
+
+  <div class="menu flex font-semibold" *ngIf="!data.isAuthenticated">
+    <div class="p-2 text-900">
+      <a class="highlighted cursor-pointer" (click)="login()">Вход</a>
+    </div>
+    <div class="p-2 ml-3 text-primary font-bold">
+      <a class="highlighted" href="{{ registerUri }}">Регистрация</a>
+    </div>
+  </div>
+
+  <div class="menu flex font-semibold" *ngIf="data.isAuthenticated">
+    <ul
+      class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row border-top-1 surface-border lg:border-top-none">
+      <li>
+        <a (click)="op.toggle($event)"
+          class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150">
+          <i class="pi pi-bell text-base lg:text-2xl mr-2 lg:mr-0 p-overlay-badge"><span id="pr_id_2_badge"
+              class="p-badge p-component p-badge-danger p-badge-dot"></span></i>
+        </a>
+      </li>
+
+      <p-overlayPanel #op>
+        <ng-template pTemplate>
+          <div style="width: 300px; height: 200px" class="flex justify-content-center">
+            <div class="p-3">Новых оповещений нет</div>
+          </div>
+        </ng-template>
+      </p-overlayPanel>
+
+      <li class="border-top-1 surface-border lg:border-top-none lg:relative">
+        <a (click)="toggleUserMenu()"
+          class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150">
+          <img class="mr-3 lg:mr-0 border-circle" src="{{ data.user?.userData?.picture ?? 'avatars/noavatar.png' }}" />
+          <i class="pi pi-angle-down ml-1 text-600"></i>
+        </a>
+
+        <div *ngIf="isUserMenuVisible" (appClickOutside)="this.isUserMenuVisible = false" [appClickOutsideSkipCount]="1"
+          (click)="toggleUserMenu()" class="surface-card z-5 shadow-2 border-round w-full lg:w-auto absolute right-0"
+          style="min-width: 16rem;">
+          <ul class="list-none p-2 m-0">
+            <li>
+              <a [routerLink]="'/u/' + data.user?.userData?.preferred_username"
+                class="flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150">
+                <i class="pi pi-user mr-2 text-700"></i><span class="font-medium text-700">Мой профиль</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/summary/new']"
+                class="flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150">
+                <i class="pi pi-plus mr-2 text-700"></i><span class="font-medium text-700">Новый конспект</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150">
+                <i class="pi pi-bookmark mr-2 text-700"></i><span class="font-medium text-700">Закладки</span>
+                <span
+                  class="inline-flex align-items-center justify-content-center ml-auto bg-blue-100 text-blue-900 border-circle"
+                  style="min-width: 1.5rem; height: 1.5rem;">3</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150">
+                <i class="pi pi-comments mr-2 text-700"></i>
+                <span class="font-medium text-700">Сообщения</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="logout()"
+                class="flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150">
+                <i class="pi pi-sign-out mr-2 text-700"></i>
+                <span class="font-medium text-700">Выход</span>
+              </a>
+            </li>
+            <li></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>

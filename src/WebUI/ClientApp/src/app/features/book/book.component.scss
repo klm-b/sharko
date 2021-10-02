@@ -1,0 +1,45 @@
+.book-cover {
+  box-shadow: 0 0 5px -1px black, inset -1px 1px 2px rgb(255 255 255 / 50%);
+}
+
+.summaries-columns {
+  columns: 2;
+}
+
+.summary-card {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
+  display: inline-block;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+:host ::ng-deep {
+  .summary-count-chip.p-chip {
+    font-size: 1.1rem !important;
+    background-color: var(--blue-500) !important;
+    border-radius: 17px !important;
+  }
+
+  .summary-count-text {
+    padding: 0.4rem !important;
+  }
+}
+
+@keyframes book-info-skeleton-animation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.book-info-skeleton {
+  animation-delay: 100ms;
+  animation-duration: 200ms;
+  animation-fill-mode: both;
+  animation-name: book-info-skeleton-animation;
+}

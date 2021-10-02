@@ -1,0 +1,49 @@
+<div class="py-4 px-8 mx-8">
+
+  <div class="surface-card mx-8 p-6 shadow-2 border-round">
+    <div class="font-medium text-3xl text-900 mb-5">Поиск</div>
+    <div class="surface-section px-6 pt-5">
+      <p-tabMenu styleClass="p-1" [model]="items" [activeItem]="items[0]"></p-tabMenu>
+    </div>
+    <div class="mt-4" *ngIf="{bookList: bookList$ | async} as bookData">
+      <p-dataView #dv *ngIf="bookData.bookList?.items" [value]="bookData.bookList?.items ?? []" [loading]="isLoading"
+        [paginator]="true" [rows]="defaultPageSize" emptyMessage="Ничего не найдено" [lazy]="true"
+        (onLazyLoad)="loadBooks($event)" [totalRecords]="bookData.bookList?.totalCount ?? 0" layout="grid">
+
+        <ng-template let-book pTemplate="gridItem">
+          <div class="col-12 md:col-6 p-3">
+            <div class="surface-card shadow-2 border-round p-3 flex">
+              <img src="{{book?.image}}" class="border-round" height="200px">
+
+              <div class="flex flex-column justify-content-between w-full pl-3">
+
+                <div>
+                  <span class="text-1xl block text-900 font-bold mb-2">{{book?.name}}</span>
+                  <div class="text-600 font-medium">
+                    <a [routerLink]="['/author', author.id]" *ngFor="let author of book.authors; last as isLastAuthor">
+                      {{author.name + (!isLastAuthor ? ', ': '')}}
+                    </a>
+                  </div>
+
+                  <div class="mt-2">
+                    <p-chip styleClass="mr-1 mt-1" *ngFor="let tag of book.tags">
+                      <span class="tag-text p-1">{{tag}}</span>
+                    </p-chip>
+                  </div>
+                </div>
+
+                <div class="flex flex-row-reverse mt-2">
+                  <button pButton pRipple type="button" [routerLink]="['/book', book.id]" label="Подробнее"
+                    class="p-button-text"></button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView>
+    </div>
+
+  </div>
+
+</div>

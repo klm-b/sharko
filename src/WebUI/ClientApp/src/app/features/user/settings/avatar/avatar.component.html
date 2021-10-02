@@ -1,0 +1,37 @@
+<div class="font-medium text-2xl text-900 mb-3 p-3">Аватар</div>
+
+<div class="px-7" *ngIf="{user: user$ | async} as data">
+  <div class="flex align-items-center">
+    <img class="select-none pointer-events-none" height="150" [src]="croppedImage" />
+    <img class="ml-4 border-circle select-none pointer-events-none" height="150" [src]="croppedImage" />
+
+    <div>
+      <span class="ml-4 text-900 font-medium text-3xl">{{ data?.user?.userName }}</span>
+      <div class="ml-4 mt-2">
+        {{data?.user?.status}}
+      </div>
+    </div>
+  </div>
+
+  <div class="font-medium text-1xl text-900 mt-3 py-3">Загрузить новый</div>
+
+  <p-fileUpload [customUpload]='true' (onClear)="onClear()" (uploadHandler)="uploadAvatar($event)"
+    (onSelect)="onSelect($event)" accept="image/*" chooseLabel='Загрузить' cancelLabel='Отменить'
+    uploadLabel='Сохранить' uploadIcon='pi pi-save'>
+    <ng-template pTemplate="content">
+      <div *ngIf='showImageDropDownPanel' (dragenter)="dropzoneHovered = true" (dragleave)="dropzoneHovered = false"
+        [class.drag-active]="dropzoneHovered"
+        class="dropdown flex-initial flex align-items-center justify-content-center py-7">
+        Или перетащите файл сюда
+      </div>
+
+      <image-cropper *ngIf='!showImageDropDownPanel' [imageFile]="imageFile" style="max-height: 50vh"
+        [maintainAspectRatio]="true" format="png" [resizeToHeight]='150' (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()">
+      </image-cropper>
+    </ng-template>
+
+    <ng-template let-file pTemplate="file"></ng-template>
+  </p-fileUpload>
+
+</div>

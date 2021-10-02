@@ -1,0 +1,16 @@
+<p-blockUI [blocked]="loadingRouteConfig">
+  <app-loading></app-loading>
+</p-blockUI>
+
+<div class="container flex flex-column">
+
+  <app-header></app-header>
+
+  <div class="content flex-1">
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+  </div>
+
+  <app-footer></app-footer>
+</div>
+
+<p-toast position="top-right"></p-toast>

@@ -1,0 +1,44 @@
+<div class="font-medium text-2xl text-900 mb-3 p-3">Общие настройки</div>
+
+<form [formGroup]="profileForm" (ngSubmit)="submit()">
+  <div class="px-7 grid formgrid p-fluid" *ngIf="{userData: userData$ | async, user: user$ | async} as data">
+
+    <div class="mb-4 col-fixed" style="width: 174px;">
+      <img class="select-none pointer-events-none" height="150" [src]="data.userData?.userData?.picture" />
+    </div>
+
+    <div class="mb-4 col">
+      <div class="field">
+        <label class="font-medium" for="username">Имя пользователя</label>
+        <span class="p-input-icon-right">
+          <i *ngIf='isValidationProcess && !profileForm.invalid' class="pi pi-spin pi-spinner"></i>
+          <i *ngIf='isValidationSucceed' class="pi pi-check text-green-600"></i>
+          <i *ngIf='profileForm.invalid' class="pi pi-times text-pink-600"></i>
+          <input id="username" formControlName="userName" type="text" pInputText />
+        </span>
+        <app-error [controlName]="profileForm.controls['userName']">
+        </app-error>
+      </div>
+
+      <div class="field">
+        <label class="font-medium" for="status">Статус</label>
+        <input id="status" formControlName="status" type="text" pInputText />
+      </div>
+    </div>
+
+    <div class="surface-100 mb-3 col-12" style="height: 2px;"></div>
+
+    <div class="field mb-4 col-12">
+      <label class="font-medium" for="bio">О себе</label>
+      <textarea id="bio" formControlName="bio" rows="5" type="text"
+        class="p-inputtextarea p-inputtext p-component p-inputtextarea-resizable"
+        style="height: 121px; overflow: hidden;"></textarea>
+    </div>
+
+    <div class="surface-100 mb-3 col-12" style="height: 2px;"></div>
+    <div class="col-3 mt-2">
+      <button type="submit" label="Сохранить изменения" [disabled]="profileForm.invalid || disableSubmit" pButton
+        pRipple></button>
+    </div>
+  </div>
+</form>

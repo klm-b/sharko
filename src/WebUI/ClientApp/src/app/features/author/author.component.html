@@ -1,0 +1,46 @@
+<div class="py-4 px-8 mx-8" *ngIf="{author: author$ | async} as data">
+  <div class="surface-card mx-8 p-6 shadow-2 border-round">
+    <div class="flex mb-3 ml-6">
+      <img class="book-cover" src="{{data.author?.image ?? '/assets/writer.png'}}" alt="book cover" width="100">
+      <div class="ml-4 flex w-7 flex-column justify-content-end">
+        <div class="font-medium text-3xl text-900">{{data.author?.name}}</div>
+      </div>
+    </div>
+
+    <ng-template [ngIf]="data.author?.biography">
+      <div class="font-medium text-2xl text-900 mt-4 ml-6 pb-3">О авторе</div>
+      <div class="ml-6" style="white-space: pre-line">
+        {{data.author?.biography}}
+      </div>
+    </ng-template>
+
+    <div class="font-medium text-2xl text-900 mt-4 ml-6">Книги автора</div>
+
+    <div class="grid mx-8 py-4">
+      <div class="col-12 md:col-6 p-3" *ngFor="let book of data.author?.books">
+        <div class="surface-card shadow-2 border-round p-3 flex">
+          <img src="{{book?.image}}" class="border-round" height="200px">
+
+          <div class="flex flex-column justify-content-between w-full pl-3">
+
+            <div>
+              <span class="text-1xl block text-900 font-bold mb-2">{{book?.name}}</span>
+
+              <div class="mt-2">
+                <p-chip styleClass="mr-1 mt-1" *ngFor="let tag of book.tags">
+                  <span class="tag-text p-1">{{tag}}</span>
+                </p-chip>
+              </div>
+            </div>
+
+            <div class="flex flex-row-reverse mt-2">
+              <button pButton pRipple type="button" [routerLink]="['/', 'book', book.id]" label="Подробнее"
+                class="p-button-text"></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

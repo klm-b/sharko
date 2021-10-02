@@ -1,0 +1,38 @@
+<div class="flex justify-content-center" *ngIf="{chapter: chapter$ | async, chapters: chapters$ | async} as data">
+
+  <div class="py-4 container">
+    <h2>{{data.chapter?.title}}</h2>
+
+    <div class="mt-3 content text-xl">
+      {{data.chapter?.content}}
+    </div>
+
+    <div class="mt-4 flex justify-content-center">
+      <button [routerLink]="['..', (data.chapter?.number ?? 1) - 1]" pButton pRipple type="button"
+        [disabled]="data.chapter?.number === 1" label="Назад" class="p-button-text"></button>
+      <button [routerLink]="['..', (data.chapter?.number ?? 1) + 1]" pButton pRipple type="button"
+        [disabled]="data.chapter?.number === data.chapters?.length" label="Вперед" class="p-button-text"></button>
+    </div>
+  </div>
+
+  <div class="chapters-overlay flex flex-column">
+    <button pButton pRipple type="button" icon="pi pi-bookmark" label="Главы" (click)="chapters.toggle($event)"
+      class="p-button-rounded align-self-start p-button-secondary p-button-outlined"></button>
+
+    <button pButton pRipple type="button" icon="pi pi-cog" label="Настройки" (click)="settings.toggle($event)"
+      class="mt-3 align-self-start p-button-rounded p-button-secondary p-button-outlined"></button>
+  </div>
+
+  <p-overlayPanel #chapters [showCloseIcon]="true">
+    <ng-template pTemplate>
+      <a pButton pRipple [routerLink]="['..', chapter.number]" class="block mt-2 p-button-secondary p-button-text"
+        *ngFor="let chapter of data.chapters">{{chapter.title}}</a>
+    </ng-template>
+  </p-overlayPanel>
+
+  <p-overlayPanel #settings [showCloseIcon]="true">
+    <ng-template pTemplate>
+      Some setting here
+    </ng-template>
+  </p-overlayPanel>
+</div>

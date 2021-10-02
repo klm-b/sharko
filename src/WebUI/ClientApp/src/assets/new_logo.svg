@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 92 94">
+    <defs>
+        <style>.cls-1{isolation:isolate;}.cls-2{fill:blue;}.cls-3{fill:#005cff;}.cls-4{fill:#009eff;}.cls-5{opacity:0.65;mix-blend-mode:hue;}.cls-6{fill:#fff;}</style>
+    </defs>
+    <title>Ресурс 1</title>
+    <g class="cls-1">
+        <g id="Слой_2" data-name="Слой 2">
+            <g id="Слой_2-2" data-name="Слой 2">
+                <path class="cls-2" d="M0,63H92a0,0,0,0,1,0,0v0A31,31,0,0,1,61,94H31A31,31,0,0,1,0,63v0A0,0,0,0,1,0,63Z"/>
+                <path class="cls-3" d="M0,31H61A31,31,0,0,1,92,62v1a0,0,0,0,1,0,0H31A31,31,0,0,1,0,32V31A0,0,0,0,1,0,31Z"/>
+                <path class="cls-4" d="M0,0H92a0,0,0,0,1,0,0V0A31,31,0,0,1,61,31H31A31,31,0,0,1,0,0V0A0,0,0,0,1,0,0Z" transform="translate(92 31) rotate(180)"/>
+                <image class="cls-5" width="38" height="46" transform="translate(28.5 28.5)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAuCAYAAABEbmvDAAAACXBIWXMAAAsSAAALEgHS3X78AAACXElEQVRYR+3ZS08UQRQG0FOIiEaj4kIX4F7/gGt/uNGlb01M0BULQUgQfCIgjy4Xt4thYHh09zgxcb5k0pN0d/pMVU9Vqm7KOYOUUhIpx1EmQy4YpJyzlNIEJjFdHycG3/9XkrGL39jNOVdE6yRcxC3cxQymjKblMvbwDZ/wGVs552qyvmBaoB7iPq4aDQy2sYTneInllNLOpABMiha7hwe4YXTduYPl+vsK1rFTWmxCdOc1gZoxOth+fZzFdeFIBUbvfZs49BlVpnBJjWK0Dz8rfe/0vwTryxjWNGNY04xhTTOGNc0Y1jRjWNOMYU0zhjXNfwHLhpjDi5G2qcSitRI/dCgr+a6wClv4ig2xUL6JyzriusAqbIql/bxYrN4RK/lZXNEB1xZWNkJW8RpPsChAG/X5OR1wbWEVfmIBT/FMID+KJX9Ja1wbWOnCFdGF86I7f4jWqvT/Q1vhmsIKagmvREstiNbbFfsQiwPua4xrAiuoRbzAY/F+rYoNt4z9lNKWIeDOCzuKelQfl9QbbeXCnPNQcOeBnYRaFKiyjXSQYeDOgjVGlXTFnQZrjSo5J25gToJVYm+0NarkFFwSA/L08bv6YVlvQv4l9kU7oUoG4MpkP4XbemPfwfhXYJUYhzawJnBvxZDQCVVyCLcknlsmfGK2KGNhpb6g7LWv470oBHzHGzFOlSGhNaqkxm2K3ngnYGsC80EY9pCPFiDmxM5xubkUBDqjSurS0JTe82bqU1/EXLuO3UElmwtiaukroQwzA0pEREttYy/nXKUTilzHik7DzoCiWt8z/wDHzCwfxiS6JgAAAABJRU5ErkJggg=="/>
+                <path class="cls-6" d="M61.79,32V69.48a1,1,0,0,1-1.72.68L47,56.24a.94.94,0,0,0-1.38,0L32.52,70.16a1,1,0,0,1-1.73-.68V32a1,1,0,0,1,.95-.95h29.1A1,1,0,0,1,61.79,32Z"/>
+            </g>
+        </g>
+    </g>
+</svg>

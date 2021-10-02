@@ -1,0 +1,35 @@
+@import "../../../../../styles/variables";
+
+:host ::ng-deep {
+  .p-fileupload .p-fileupload-content {
+    padding: 1rem;
+  }
+}
+
+.dropdown {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='20' ry='20' stroke='%232196F3FF' stroke-width='8' stroke-dasharray='25' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+  border-radius: 20px;
+  font-family: $main-font-family !important;
+}
+
+.drag-active {
+  opacity: 0.8;
+  background-image: repeating-linear-gradient(
+      45deg,
+      #444cf7 25%,
+      transparent 25%,
+      transparent 75%,
+      #444cf7 75%,
+      #444cf7
+    ),
+    repeating-linear-gradient(
+      45deg,
+      #444cf7 25%,
+      #e5e5f7 25%,
+      #e5e5f7 75%,
+      #444cf7 75%,
+      #444cf7
+    );
+  background-position: 0 0, 10px 10px;
+  background-size: 20px 20px;
+}

@@ -1,0 +1,17 @@
+.search-field {
+  width: 600px
+}
+
+.menu .highlighted {
+  transition: border-color .2s;
+  border-bottom: 4px solid transparent;
+}
+
+.menu .highlighted:hover {
+  border-color: var(--blue-600);
+}
+
+.menu img{
+  width: 32px;
+  height: 32px
+}

@@ -1,0 +1,30 @@
+<div class="px-8 mx-8 py-5 grid">
+  <div class="col-3">
+    <div class="surface-card p-4 shadow-2 border-round">
+      <div class="font-medium text-2xl text-900 mb-3 p-3">Настройки</div>
+      <div class="flex flex-column border-top-1 surface-border surface-0 p-4 select-none">
+
+        <div class="py-2 px-0 m-0">
+          <div class="p-3 text-500 font-medium">ПРОФИЛЬ</div>
+          <p-tabMenu class="vertical-menu" [model]="profile_items"></p-tabMenu>
+        </div>
+
+        <div class="py-2 px-0 m-0 border-top-1 surface-border">
+          <div class="p-3 text-500 font-medium">БЕЗОПАСНОСТЬ</div>
+          <p-tabMenu class="vertical-menu" [model]="security_items"></p-tabMenu>
+        </div>
+
+        <div class="py-2 px-0 m-0 border-top-1 surface-border">
+          <div class="p-3 text-500 font-medium">АККАУНТ</div>
+          <p-tabMenu class="vertical-menu" [model]="account_items"></p-tabMenu>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="surface-card p-4 shadow-2 border-round">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+.vertical-menu {
+  & .p-tabmenu .p-tabmenu-nav {
+    flex-direction: column;
+    border: 0;
+  }
+
+  & .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+    color: var(--surface-700) !important;
+    border-radius: var(--border-radius);
+    border: 0;
+    margin: 0;
+    transition-duration: 150ms;
+    transition-property: background-color, border-color, color;
+
+    &:hover {
+      background-color: var(--surface-100) !important;
+    }
+
+    &:focus {
+      box-shadow: none !important;
+      background-color: var(--surface-100) !important;
+    }
+  }
+
+  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-text {
+    font-weight: 500;
+  }
+
+  .p-menuitem-link-active {
+    background-color: var(--surface-100) !important;
+  }
+}

@@ -1,0 +1,41 @@
+.waves-block {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+
+  & svg {
+    grid-area: 1 / 1;
+  }
+
+  & div {
+    grid-area: 1 / 1;
+  }
+}
+
+.feature-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 2rem;
+
+  &__circle {
+    min-width: 2rem;
+    min-height: 2rem;
+    border: 2px solid white;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  &__line {
+    height: 100%;
+    width: 2px;
+    min-height: 4rem;
+  }
+}
+
+.interests-select > button {
+  margin: 5px;
+}
