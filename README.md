@@ -8,3 +8,6 @@ Sharko is a social network for book lovers where users can share summaries of no
 * Clean Architecture, CQRS
 * IdentityServer4
 * Angular, PrimeNG
+
+https://user-images.githubusercontent.com/59416603/163248932-32b76440-ed18-452a-9e23-587ad2d93734.mp4
+
